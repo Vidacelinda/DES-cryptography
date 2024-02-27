@@ -3,6 +3,8 @@
 #include <string>
 #include <cmath>
 
+using namespace std;
+
 class DES_permutations_and_tables{
 	// constants regarding the keys
 
@@ -114,6 +116,33 @@ class DES_permutations_and_tables{
 				35 ,3  ,43 ,11 ,51 ,19 ,59 ,27 ,
 				34 ,2  ,42 ,10 ,50 ,18 ,58 ,26 ,
 				33 ,1  ,41 ,9  ,49 ,17 ,57 ,25 };
+};
+
+class functions
+{
+	string shift_bit(string s, int n)
+	{
+		string k = "";
+
+		for (int i = n; i < s.size(); i++)
+			k += s[i];
+
+		for (int i = 0; i < n; i++)
+			k += s[i];
+
+		return k;
+	}
+	
+		string xor_add(string s1, string s2)
+	{
+		string result = "";
+		for (int j = 0; j < s1.size(); j++) {
+			if (s1[j] != s2[j]) result += '1';
+			else result += '0';
+		}
+		return result;
+	}
+
 };
 
 int main(){
