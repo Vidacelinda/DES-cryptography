@@ -4,8 +4,13 @@
 
 using namespace std;
 
+string Bin_to_Hex(string s);
+string Hex_to_Bin(string s);
+string Dec_to_Bin(int n);
+
 // source https://en.wikipedia.org/wiki/DES_supplementary_material
 class DES_permutations_and_tables{
+public:
 	// **  constants regarding the keys process **
 	// permutation choice 1
 	const int pc_1[56] ={  57 ,49 ,41 ,33 ,25 ,17 ,9  ,
@@ -124,8 +129,9 @@ class DES_permutations_and_tables{
 				22 ,11 ,4  ,25 };
 };
 
-class DES_Functions
+class DES_Functions :public DES_permutations_and_tables
 {
+public:
 	string shift_bit(string s, int n)
 	{
 		string k = "";
@@ -173,7 +179,11 @@ class DES_Functions
 
 };
 
-class DES_Encryption : DES_Functions{
+class DES_Encryption {
+public:
+	DES_Functions des_functions;
+	DES_permutations_and_tables des_permutations_and_tables;
+	
 	void encrypt(const string& plain_txt, const string& key)
 	{
 		// ** making sub-keys ** 
@@ -186,7 +196,7 @@ class DES_Encryption : DES_Functions{
 		string key_firstHalf = "", key_secondHalf = "";
 		// permutation - append to key_56
 		for (int i = 0; i < 56; i++)
-			key_56 += key_64[pc_1[i] - 1];
+			key_56 += key_64[des_permutations_and_tables.pc_1[i] - 1];
 
 		for (int i = 0; i < 28; i++)
 			key_firstHalf += key_56[i];
@@ -198,13 +208,13 @@ class DES_Encryption : DES_Functions{
 		// numbers of rounds 16
 		string L_key[16], R_key[16];
 
-		L_key[0] = shift_bit(key_firstHalf, num_leftShift[0]);  // shifting the bits according to num_leftSifht
-		R_key[0] = shift_bit(key_secondHalf, num_leftShift[0]);
+		L_key[0] = des_functions.shift_bit(key_firstHalf, des_permutations_and_tables.num_leftShift[0]);  // shifting the bits according to num_leftSifht
+		R_key[0] = des_functions.shift_bit(key_secondHalf, des_permutations_and_tables.num_leftShift[0]);
 
 		for (int i = 1; i < 16; i++)
 		{
-			L_key[i] = shift_bit(L_key[i - 1], num_leftShift[i]);
-			R_key[i] = shift_bit(R_key[i - 1], num_leftShift[i]);
+			L_key[i] = des_functions.shift_bit(L_key[i - 1], des_permutations_and_tables.num_leftShift[i]);
+			R_key[i] = des_functions.shift_bit(R_key[i - 1], des_permutations_and_tables.num_leftShift[i]);
 		}
 
 
@@ -219,12 +229,245 @@ class DES_Encryption : DES_Functions{
 		{
 			key_48[i] = "";
 			for (int j = 0; j < 48; j++)
-				key_48[i] += keys_56[i][pc_2[j] - 1]; // making 48 bits keys
+				key_48[i] += keys_56[i][des_permutations_and_tables.pc_2[j] - 1]; // making 48 bits keys
 		}
 
+		// ** working on the plain text **
+
+		string plain_txt_64 = Hex_to_Bin(plain_txt); // transforming key from 16-bits hex to 64-bits bin
+
+		string IP = ""; // permuted key
+
+		// intial permution 
+		for (int i = 0; i < 64; i++)
+			IP += plain_txt_64[des_permutations_and_tables.IP_t[i] - 1];
+
+		string L = "", R = "";
+
+		for (int i = 0; i < 32; i++)
+			L += IP[i];
+
+		for (int i = 32; i < 64; i++)
+			R += IP[i];
+
+		string L_32[16], R_32[16];
+		string R_xor_K[16]; //right xor key 
+		string R_48[16]; // making R_32 48 bits so that we can xor it with key_48 (wich is 48 bits)
+		string S_R[16], s[16][8];
+		string s_1[16];//s boxes
+		string P_R[16];
+
+		R_48[0] = "";
+		// permutation padded expantion tabel
+		for (int j = 0; j < 48; j++)
+			R_48[0] += R[des_permutations_and_tables.E_t[j] - 1];
+		R_xor_K[0] = des_functions.xor_add(R_48[0], key_48[0]); // fill the R_xor_K array
+
+		for (int j = 0; j <48; j += 6) // dividing each value of R_xor_K to 8 string contaning 6 char each
+			for (int k = j; k < j + 6; k++)
+				s[0][j / 6] += R_xor_K[0][k];
+
+		// 8
+		s_1[0] = "";
+		// 
+		for (int j = 0; j < 8; j++)
+			s_1[0] += des_functions.get_element_from_box(s[0][j], j);
+		// right procesed calculation 
+		for (int j = 0; j < 32; j++)
+			P_R[0] += s_1[0][des_permutations_and_tables.P[j] - 1];
+
+		L_32[0] = R;
+		R_32[0] = "";
+		R_32[0] = des_functions.xor_add(P_R[0], L);
+
+		for (int i = 1; i < 16; i++)
+
+		{
+			L_32[i] = R_32[i - 1];
+			R_48[i] = "";
+			for (int j = 0; j < 48; j++)
+				R_48[i] += R_32[i - 1][des_permutations_and_tables.E_t[j] - 1];
+
+			R_xor_K[i] = des_functions.xor_add(R_48[i], key_48[i]); // fill the R_xor_K
+
+			for (int j = 0; j <48; j += 6) // dividing each value of R_xor_K to 8 string contaning 6 char each
+				for (int k = j; k < j + 6; k++)
+					s[i][j / 6] += R_xor_K[i][k];
+
+			s_1[i] = "";
+			for (int j = 0; j < 8; j++)
+				s_1[i] += des_functions.get_element_from_box(s[i][j], j);
+
+			for (int j = 0; j < 32; j++)
+				P_R[i] += s_1[i][des_permutations_and_tables.P[j] - 1];
+
+			L_32[i] = R_32[i - 1];
+			R_32[i] = "";
+			R_32[i] = des_functions.xor_add(P_R[i], L_32[i - 1]);
+
+		}
+
+		string encrypted_bin = "", RL;
+		// revers 
+		RL = R_32[15] + L_32[15];
+		cout<<endl<<RL<<endl;
+		for (int i = 0; i < 64; i++)
+			encrypted_bin += RL[des_functions.P_1[i] - 1];
+		cout<<endl<<encrypted_bin<<endl;
+		cout << Bin_to_Hex(encrypted_bin) << endl;
+	}
 		
-}
+};
 
 int main(){
-    
+	DES_Encryption DES;
+
+	bool is_valid;
+	string plain_txt, key;
+
+	cout << "Enter PLAIN TEXT of EXACTLY 16 character written in hexadecimal : ";
+
+	do {
+		is_valid = true;
+        // cin>>plain_txt
+
+		plain_txt="1234567890123456";
+		cout<<"plain text :"+plain_txt;
+
+		if (plain_txt.size() != 16)
+			is_valid = false;
+
+		else
+		{
+			for (int i = 0; i < plain_txt.size(); i++)
+				if (!((plain_txt[i] <= 'f' && plain_txt[i] >= 'a') ||
+					(plain_txt[i] <= 'F' && plain_txt[i] >= 'A') ||
+					(plain_txt[i] >= '0' && plain_txt[i] <= '9')))
+				{
+					is_valid = false;
+					break;
+				}
+		}
+		if (!is_valid)
+			cout << "invalid input, try again : ";
+	} while (!is_valid);
+
+	cout << "Enter a KEY of EXACTLY 16 character written in hexadecimal : ";
+
+	do {
+		is_valid = true;
+		// cin >> key;
+        key="1234567890123456";
+
+		if (key.size() != 16)
+			is_valid = false;
+
+		else
+		{
+			for (int i = 0; i < key.size(); i++)
+				if (!((key[i] <= 'f' && key[i] >= 'a') ||
+					(key[i] <= 'F' && key[i] >= 'A') ||
+					(key[i] >= '0' && key[i] <= '9')))
+				{
+					is_valid = false;
+					break;
+				}
+		}
+		if (!is_valid)
+			cout << "invalid input, try again : ";
+	} while (!is_valid);
+	
+	DES.encrypt(plain_txt, key);
+	return 0;
+}
+string Bin_to_Hex(string s)
+{
+	string hex = "";
+	for (int i = 0; i < s.size(); i += 4)
+	{
+		string k = "";
+		for (int j = i; j < i + 4; j++)
+			k += s[j];
+		if (k == "0000")
+			hex += '0';
+		else if (k == "0001")
+			hex += '1';
+		else if (k == "0010")
+			hex += '2';
+		else if (k == "0011")
+			hex += '3';
+		else if (k == "0100")
+			hex += '4';
+		else if (k == "0101")
+			hex += '5';
+		else if (k == "0110")
+			hex += '6';
+		else if (k == "0111")
+			hex += '7';
+		else if (k == "1000")
+			hex += '8';
+		else if (k == "1001")
+			hex += '9';
+		else if (k == "1010")
+			hex += 'A';
+		else if (k == "1011")
+			hex += 'B';
+		else if (k == "1100")
+			hex += 'C';
+		else if (k == "1101")
+			hex += 'D';
+		else if (k == "1110")
+			hex += 'E';
+		else if (k == "1111")
+			hex += 'F';
+	}
+	return hex;
+}
+
+string Hex_to_Bin(string s)
+{
+	string bin = "";
+	for (int i = 0; i < s.size(); i++)
+	{
+		switch (s[i])
+		{
+		case '0': bin += "0000"; break;
+		case '1': bin += "0001"; break;
+		case '2': bin += "0010"; break;
+		case '3': bin += "0011"; break;
+		case '4': bin += "0100"; break;
+		case '5': bin += "0101"; break;
+		case '6': bin += "0110"; break;
+		case '7': bin += "0111"; break;
+		case '8': bin += "1000"; break;
+		case '9': bin += "1001"; break;
+		case 'A':
+		case 'a': bin += "1010"; break;
+		case 'B':
+		case 'b': bin += "1011"; break;
+		case 'C':
+		case 'c': bin += "1100"; break;
+		case 'D':
+		case 'd': bin += "1101"; break;
+		case 'E':
+		case 'e': bin += "1110"; break;
+		case 'F':
+		case 'f': bin += "1111"; break;
+
+		}
+	}
+	return bin;
+}
+
+string Dec_to_Bin(int n)
+{
+	string bin = "";
+	while (n > 0)
+	{
+		bin = (char)(n % 2 + '0') + bin;
+		n /= 2;
+	}
+	while (bin.size() < 4)
+		bin = '0' + bin;
+	return bin;
 }
