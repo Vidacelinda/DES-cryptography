@@ -13,7 +13,7 @@ class DES_permutations_and_tables{
 public:
 	// **  constants regarding the keys process **
 	// permutation choice 1
-	const int pc_1[56] ={  57 ,49 ,41 ,33 ,25 ,17 ,9  ,
+	const int pc_1[56]={  57 ,49 ,41 ,33 ,25 ,17 ,9  ,
 				1  ,58 ,50 ,42 ,34 ,26 ,18 ,
 				10 ,2  ,59 ,51 ,43 ,35 ,27 ,
 				19 ,11 ,3  ,60 ,52 ,44 ,36 ,
@@ -326,14 +326,12 @@ int main(){
 	bool is_valid;
 	string plain_txt, key;
 
-	cout << "Entered PLAIN TEXT of EXACTLY 16 character written in hexadecimal : ";
-
 	do {
 		is_valid = true;
         // cin>>plain_txt
 
 		plain_txt="1234567890123456";
-		cout<<"Entered PLAIN TEXT of EXACTLY 16 character written in hexadecimal :"+plain_txt +"\n";
+		cout<<"Entered PLAIN TEXT of EXACTLY 16 character written in hexadecimal :\n"+plain_txt +"\n\n";
 
 		if (plain_txt.size() != 16)
 			is_valid = false;
@@ -353,12 +351,14 @@ int main(){
 			cout << "invalid input, try again : ";
 	} while (!is_valid);
 
-	cout << "Enter a KEY of EXACTLY 16 character written in hexadecimal : ";
+	cout << "Entered KEY of EXACTLY 16 character written in hexadecimal : \n";
 
 	do {
 		is_valid = true;
-		// cin >> key;
+		
         key="1234567890123456";
+		cout <<key+'\n';
+
 
 		if (key.size() != 16)
 			is_valid = false;
