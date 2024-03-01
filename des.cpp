@@ -1,7 +1,6 @@
-
+#include <cmath>
 #include <iostream>
 #include <string>
-#include <cmath>
 
 using namespace std;
 
@@ -123,10 +122,9 @@ class DES_permutations_and_tables{
 				32 ,27 ,3  ,9  ,
 				19 ,13 ,30 ,6  ,
 				22 ,11 ,4  ,25 };
-
 };
 
-class functions
+class DES_Functions
 {
 	string shift_bit(string s, int n)
 	{
@@ -141,7 +139,7 @@ class functions
 		return k;
 	}
 	
-		string xor_add(string s1, string s2)
+	string xor_add(string s1, string s2)
 	{
 		string result = "";
 		for (int j = 0; j < s1.size(); j++) {
@@ -151,7 +149,81 @@ class functions
 		return result;
 	}
 
+	string get_element_from_box(string s, int k)
+	{
+		int dec1 = 0, dec2 = 0, pwr = 0;
+		dec1 = (int)(s[0] - '0') * 2 + (int)(s[5] - '0');
+		for (int i = s.size() - 2; i >= 1; i--)
+		{
+			dec2 += (int)(s[i] - '0') * pow(2, pwr++);
+		}
+
+		return Dec_to_Bin(S[k][dec1][dec2]);
+	}
+	// expanding according to expantion table E_t
+	void expand_R(string r, string r32)
+	{
+		r = "";
+		for (int j = 0; j < 48; j++)
+		{
+			r += r32[E_t[j] - 1];
+		}
+	}
+
+
 };
+
+class DES_Encryption : DES_Functions{
+	void encrypt(const string& plain_txt, const string& key)
+	{
+		// ** making sub-keys ** 
+
+		string key_64 = Hex_to_Bin(key);
+
+
+
+		string key_56 = "";
+		string key_firstHalf = "", key_secondHalf = "";
+		// permutation - append to key_56
+		for (int i = 0; i < 56; i++)
+			key_56 += key_64[pc_1[i] - 1];
+
+		for (int i = 0; i < 28; i++)
+			key_firstHalf += key_56[i];
+
+		for (int i = 28; i < 56; i++) {
+			key_secondHalf += key_56[i];
+		}
+
+		// numbers of rounds 16
+		string L_key[16], R_key[16];
+
+		L_key[0] = shift_bit(key_firstHalf, num_leftShift[0]);  // shifting the bits according to num_leftSifht
+		R_key[0] = shift_bit(key_secondHalf, num_leftShift[0]);
+
+		for (int i = 1; i < 16; i++)
+		{
+			L_key[i] = shift_bit(L_key[i - 1], num_leftShift[i]);
+			R_key[i] = shift_bit(R_key[i - 1], num_leftShift[i]);
+		}
+
+
+
+		string key_48[16], keys_56[16];
+
+		for (int i = 0; i < 16; i++)
+		{
+			keys_56[i] = L_key[i] + R_key[i]; // making 56 bits keys
+		}
+		for (int i = 0; i < 16; i++)
+		{
+			key_48[i] = "";
+			for (int j = 0; j < 48; j++)
+				key_48[i] += keys_56[i][pc_2[j] - 1]; // making 48 bits keys
+		}
+
+		
+}
 
 int main(){
     
