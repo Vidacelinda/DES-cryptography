@@ -8,7 +8,7 @@ string Bin_to_Hex(string s);
 string Hex_to_Bin(string s);
 string Dec_to_Bin(int n);
 
-// source https://en.wikipedia.org/wiki/DES_supplementary_material
+// tables source https://en.wikipedia.org/wiki/DES_supplementary_material
 class DES_permutations_and_tables{
 public:
 	// **  constants regarding the keys process **
@@ -208,7 +208,8 @@ public:
 		// numbers of rounds 16
 		string L_key[16], R_key[16];
 
-		L_key[0] = des_functions.shift_bit(key_firstHalf, des_permutations_and_tables.num_leftShift[0]);  // shifting the bits according to num_leftSifht
+		// shifting the bits according to num_leftSifht
+		L_key[0] = des_functions.shift_bit(key_firstHalf, des_permutations_and_tables.num_leftShift[0]);  
 		R_key[0] = des_functions.shift_bit(key_secondHalf, des_permutations_and_tables.num_leftShift[0]);
 
 		for (int i = 1; i < 16; i++)
@@ -325,14 +326,14 @@ int main(){
 	bool is_valid;
 	string plain_txt, key;
 
-	cout << "Enter PLAIN TEXT of EXACTLY 16 character written in hexadecimal : ";
+	cout << "Entered PLAIN TEXT of EXACTLY 16 character written in hexadecimal : ";
 
 	do {
 		is_valid = true;
         // cin>>plain_txt
 
 		plain_txt="1234567890123456";
-		cout<<"plain text :"+plain_txt;
+		cout<<"Entered PLAIN TEXT of EXACTLY 16 character written in hexadecimal :"+plain_txt +"\n";
 
 		if (plain_txt.size() != 16)
 			is_valid = false;
