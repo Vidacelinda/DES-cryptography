@@ -23,7 +23,7 @@ public:
 				21 ,13 ,5  ,28 ,20 ,12 ,4 };
 
 	
-	// permutation choice 1
+	// permutation choice 2
 	const int pc_2[48] = {  14 ,17 ,11 ,24 ,1  ,5  ,
 				3  ,28 ,15 ,6  ,21 ,10 ,
 				23 ,19 ,12 ,4  ,26 ,8  ,
