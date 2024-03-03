@@ -9,6 +9,7 @@ how I made the sub keys (the plan i drew)
 
 How I did the encryption and bit manipulation process.
 
-<img width="700" alt="image" src="https://github.com/Vidacelinda/DES-cryptography/assets/87499194/edec5bdd-9d3f-46a8-a471-7882b9c77b07">
+<img width="732" alt="image" src="https://github.com/Vidacelinda/DES-cryptography/assets/87499194/5e7afe39-413b-4d32-a5e7-c34fe68f8f14">
+
 
 
