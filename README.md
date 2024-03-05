@@ -13,7 +13,7 @@ The Data Encryption Standard (DES) is a symmetric-key encryption algorithm that 
 2. DES uses a single 56-bit key from which it generates 16 subkeys, one for each round of the main encryption process. The original key is first permuted according to a fixed table, then split into two halves. Each half is rotated left by a certain number of positions (which varies for each round), and then a 48-bit subkey is generated from this result by another permutation.
 3. 16 Rounds of Processing: Each round includes expansion of the right half of the data, XOR with a subkey, substitution via S-boxes, permutation, and mixing with the left half. This process ensures diffusion and confusion in the data.
 4. Final Permutation: Applies the inverse of the initial permutation to the output of the last round to produce the 64-bit ciphertext.
-5. Decryption: Follows the encryption steps in reverse order, using the subkeys in reverse to retrieve the original plaintext.
+5. Decryption mirrors the encryption process but proceeds in reverse. Initially, the ciphertext undergoes the initial permutation. Following this, it passes through the 16 rounds, utilizing the subkeys in reverse sequence. To conclude, the final permutation is executed, resulting in the recovery of the original plaintext.
 
 Each of these steps is designed to ensure that small changes in the plaintext or the key produce significant changes in the ciphertext, a property known as diffusion. Additionally, the process ensures that the relationship between the plaintext and ciphertext is highly non-linear, contributing to the security of the encrypted message.
 
