@@ -13,3 +13,6 @@ How I did the encryption and bit manipulation process . (F Block is in the orang
 
 
 
+Terminal output 
+
+<img width="612" alt="image" src="https://github.com/Vidacelinda/DES-cryptography/assets/87499194/8d2cabe7-1bc2-4387-9786-5f0a227aeb7f">
