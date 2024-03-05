@@ -11,7 +11,7 @@ How I did the encryption and bit manipulation process . (F Block is in the orang
 
 <img width="732" alt="image" src="https://github.com/Vidacelinda/DES-cryptography/assets/87499194/5e7afe39-413b-4d32-a5e7-c34fe68f8f14">
 
-my plan for the decryption was to use one round since I had the first Right and first Left binary output along with the first sub key so all i had to do was plug it in.
+My plan for the decryption was to use one round since I had the first Right and first Left binary output along with the first sub key so all i had to do was plug it in.
 
 <img width="170" alt="image" src="https://github.com/Vidacelinda/DES-cryptography/assets/87499194/9dbabee2-75fa-42dc-b1fb-651402745507">
 
