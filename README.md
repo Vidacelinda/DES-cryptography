@@ -1,6 +1,11 @@
-cryptography
+#Created by Carlo Leiva
 
-DES cryptography made from scratch
+#DES cryptography
+
+project on github 
+https://github.com/Vidacelinda/DES-cryptography
+
+DES cryptography Encryption and Decryption made from scratch.
 
 how I made the sub keys (the plan i drew)
 
