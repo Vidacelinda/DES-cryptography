@@ -34,6 +34,9 @@ I intended to execute the decryption using a single round, since I had the initi
 <img width="453" alt="image" src="https://github.com/Vidacelinda/DES-cryptography/assets/87499194/78381a57-b7c4-4ed0-b193-cd9a8d0eaed1">
 
 
-Terminal output 
+###Ruining Code
+what you need to know is that I gave astring of 16 hexidecimal and a secreter key of lenght 16 hexidecimal aswell to produce a cipher text which will then be decrypted back to the orginal message. (Note:the decryption had issues and I attmepted mutiple times to fix it but for some reason it was not working properly)
+
+##Terminal output 
 
 <img width="612" alt="image" src="https://github.com/Vidacelinda/DES-cryptography/assets/87499194/8d2cabe7-1bc2-4387-9786-5f0a227aeb7f">
