@@ -35,7 +35,7 @@ I intended to execute the decryption using a single round, since I had the initi
 
 
 ### Ruining Code
-All the user has to do is run the code since I gave a inital string of 16 hexidecimal and a secret key of lenght 16 hexidecimal aswell to produce a cipher text which will then be decrypted back to the orginal message. (Note:the decryption had issues and I attmepted mutiple times to fix it but for some reason it was not working properly)
+All the user has to do is run the code since I gave a inital string of 16 hexidecimal and a secret key of lenght 16 hexidecimal aswell to produce a cipher text which will then be decrypted back to the orginal message. (Note:The decryption had issues and I attmepted mutiple times to fix it but for some reason it was not working properly and due to time constrant i was not able to work on it fully due to midterms of outher classes)
 <img width="1029" alt="image" src="https://github.com/Vidacelinda/DES-cryptography/assets/87499194/f251ab77-2643-4bb8-896d-2bcd3271550b">
 <img width="419" alt="image" src="https://github.com/Vidacelinda/DES-cryptography/assets/87499194/98d3f287-3bea-4bde-b309-d57c7dd98b52">
 
