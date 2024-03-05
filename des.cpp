@@ -291,16 +291,13 @@ public:
 
 		// revers
 		RL = R_32[15] + L_32[15];
-		cout << endl
-			 << RL << endl;
+		cout << "\n** ENCRYPTION **\n" <<"Binary output after the 16 rounds" << endl<< RL << endl << "[ Final Permutation ]"; 
 		for (int i = 0; i < 64; i++)
 			encrypted_bin += RL[des_functions.P_1[i] - 1];
-		cout << endl
-			 << encrypted_bin << endl;
-		cout << Bin_to_Hex(encrypted_bin) << endl;
+		cout << endl<< encrypted_bin << endl<<"[ Bin_to_Hex ]\n";
+		cout << "Encrypted cipher text:"<<Bin_to_Hex(encrypted_bin) << endl;
 
 		// **** DECRYPTION 1 ROUND START
-
 
 		// swap R_32[0] and L_32[0]
 		// string temp=R_32[0];
@@ -350,12 +347,12 @@ public:
 		string decrypted_bin = "", LL;
 
 		LL =L_32[0]+A;//revers
-		cout << endl<< LL << endl;
+		cout <<"\n** DECRYPTION **\n" <<"Binary output after the 16 rounds" << endl<< LL << endl << "[ Final Permutation ]"; 
 		// Final permutation
 		for (int i = 0; i < 64; i++)
 			decrypted_bin += LL[des_functions.P_1[i] - 1];
-		cout << endl << decrypted_bin + " : decrypted message "<< endl;
-		cout << Bin_to_Hex(decrypted_bin) << endl;
+		cout << endl << decrypted_bin << endl<<"[ Bin_to_Hex ]\n";
+		cout << "Decrypted message :" <<Bin_to_Hex(decrypted_bin) << endl;
 		// cout << Bin_to_Hex(decrypted_bin) << endl
 	}
 };
@@ -467,6 +464,8 @@ string Bin_to_Hex(string s)
 	return hex;
 }
 
+
+
 string Hex_to_Bin(string s)
 {
 	string bin = "";
@@ -534,6 +533,7 @@ string Hex_to_Bin(string s)
 }
 
 string Dec_to_Bin(int n)
+
 {
 	string bin = "";
 	while (n > 0)
