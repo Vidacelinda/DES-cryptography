@@ -22,9 +22,10 @@ how I made the sub keys (the plan I drew)
 <img width="500" alt="image" src="https://github.com/Vidacelinda/DES-cryptography/assets/87499194/2b2dfa77-33c9-43f1-8e82-1b8e73f56a2d">
 
 
-How I did the encryption and bit manipulation process . (F Block is in the orange doted)
+How I did the encryption and bit manipulation process for all 16 rounds .the F-Block is in the red doted box.
 
-<img width="732" alt="image" src="https://github.com/Vidacelinda/DES-cryptography/assets/87499194/5e7afe39-413b-4d32-a5e7-c34fe68f8f14">
+<img width="712" alt="image" src="https://github.com/Vidacelinda/DES-cryptography/assets/87499194/c77eff00-a2dc-4876-91e3-b3564f5b9e91">
+
 
 I intended to execute the decryption using a single round, since I had the initial Right and Left binary outputs along with the first subkey, requiring only their integration in the decrption since its just a miror of the encrption round 1. Despite repeated attempts, a persistent issue arose during the decryption process. After numerous rounds of refactoring, the problem remained unresolved. Consequently, I opted to disclose all my decryption strategies, which I believe to be accurate, and have fully implemented them in my code.
 
