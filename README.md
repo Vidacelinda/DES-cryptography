@@ -30,6 +30,7 @@ I intended to execute the decryption using a single round, since I had the initi
 
 <img width="170" alt="image" src="https://github.com/Vidacelinda/DES-cryptography/assets/87499194/9dbabee2-75fa-42dc-b1fb-651402745507">
 
+<img width="453" alt="image" src="https://github.com/Vidacelinda/DES-cryptography/assets/87499194/78381a57-b7c4-4ed0-b193-cd9a8d0eaed1">
 
 
 Terminal output 
