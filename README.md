@@ -7,7 +7,17 @@ https://github.com/Vidacelinda/DES-cryptography
 
 DES cryptography Encryption and Decryption made from scratch.
 
-how I made the sub keys (the plan i drew)
+The Data Encryption Standard (DES) is a symmetric-key encryption algorithm that encrypts digital data through several key steps:
+
+1. Initial Permutation (IP): Rearranges the 64-bit plaintext input using a fixed table to prepare for encryption.
+2. Subkey Generation: Generates 16 subkeys from the main 56-bit key through permutations and shifts, one for each encryption round.
+3. 16 Rounds of Processing: Each round includes expansion of the right half of the data, XOR with a subkey, substitution via S-boxes, permutation, and mixing with the left half. This process ensures diffusion and confusion in the data.
+4. Final Permutation: Applies the inverse of the initial permutation to the output of the last round to produce the 64-bit ciphertext.
+5. Decryption: Follows the encryption steps in reverse order, using the subkeys in reverse to retrieve the original plaintext.
+
+Each of these steps is designed to ensure that small changes in the plaintext or the key produce significant changes in the ciphertext, a property known as diffusion. Additionally, the process ensures that the relationship between the plaintext and ciphertext is highly non-linear, contributing to the security of the encrypted message.
+
+how I made the sub keys (the plan I drew)
 
 <img width="500" alt="image" src="https://github.com/Vidacelinda/DES-cryptography/assets/87499194/2b2dfa77-33c9-43f1-8e82-1b8e73f56a2d">
 
