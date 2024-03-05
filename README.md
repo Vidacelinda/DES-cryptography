@@ -11,6 +11,7 @@ How I did the encryption and bit manipulation process . (F Block is in the orang
 
 <img width="732" alt="image" src="https://github.com/Vidacelinda/DES-cryptography/assets/87499194/5e7afe39-413b-4d32-a5e7-c34fe68f8f14">
 
+for the decryption 
 
 
 Terminal output 
