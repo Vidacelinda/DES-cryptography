@@ -9,8 +9,8 @@ DES cryptography Encryption and Decryption made from scratch.
 
 The Data Encryption Standard (DES) is a symmetric-key encryption algorithm that encrypts digital data through several key steps:
 
-1. Initial Permutation (IP): Rearranges the 64-bit plaintext input using a fixed table to prepare for encryption.
-2. Subkey Generation: Generates 16 subkeys from the main 56-bit key through permutations and shifts, one for each encryption round.
+1. The 64-bit plaintext input is initially permuted using a fixed table. This step rearranges the bits to produce a permuted input that is fed into the main DES algorithm. It's a straightforward, non-encryption step that prepares the data for the subsequent processes.
+2. DES uses a single 56-bit key from which it generates 16 subkeys, one for each round of the main encryption process. The original key is first permuted according to a fixed table, then split into two halves. Each half is rotated left by a certain number of positions (which varies for each round), and then a 48-bit subkey is generated from this result by another permutation.
 3. 16 Rounds of Processing: Each round includes expansion of the right half of the data, XOR with a subkey, substitution via S-boxes, permutation, and mixing with the left half. This process ensures diffusion and confusion in the data.
 4. Final Permutation: Applies the inverse of the initial permutation to the output of the last round to produce the 64-bit ciphertext.
 5. Decryption: Follows the encryption steps in reverse order, using the subkeys in reverse to retrieve the original plaintext.
