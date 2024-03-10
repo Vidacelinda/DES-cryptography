@@ -2,9 +2,6 @@
 
 # DES cryptography 
 
-project on github (link) 
-https://github.com/Vidacelinda/DES-cryptography
-
 DES cryptography Encryption and Decryption made from scratch.
 
 The Data Encryption Standard (DES) is a symmetric-key encryption algorithm that encrypts digital data through several key steps:
