@@ -40,6 +40,6 @@ All the user has to do is run the code since I gave a inital string of 16 hexide
 <img width="419" alt="image" src="https://github.com/Vidacelinda/DES-cryptography/assets/87499194/98d3f287-3bea-4bde-b309-d57c7dd98b52">
 
 
-## Terminal output -
+## Terminal output (still testing) -
 
 <img width="612" alt="image" src="https://github.com/Vidacelinda/DES-cryptography/assets/87499194/8d2cabe7-1bc2-4387-9786-5f0a227aeb7f">
