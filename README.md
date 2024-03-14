@@ -1,5 +1,3 @@
-# Created by Carlo Leiva
-
 # DES cryptography 
 
 DES cryptography Encryption and Decryption made from scratch.
@@ -41,3 +39,4 @@ All the user has to do is run the code since I gave a inital string of 16 hexide
 
 <img width="700" alt="image" src="https://github.com/Vidacelinda/DES-cryptography/assets/87499194/89ee59f3-9aa3-4bb0-9966-119679ed8260">
 
+### Created by Carlo Leiva
