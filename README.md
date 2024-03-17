@@ -1,6 +1,6 @@
 # DES cryptography 
 
-DES cryptography Encryption and Decryption made from scratch.
+## DES cryptography Encryption and Decryption made from scratch.
 
 The Data Encryption Standard (DES) is a symmetric-key encryption algorithm that encrypts digital data through several key steps:
 
