@@ -16,7 +16,7 @@ how I made the sub keys (the plan I drew)
 
 <img width="500" alt="image" src="https://github.com/Vidacelinda/DES-cryptography/assets/87499194/2b2dfa77-33c9-43f1-8e82-1b8e73f56a2d">
 
-## Encryption -
+## Encryption (16 rounds) - 
 How I did the encryption and bit manipulation process for all 16 rounds .the F-Block is in the red doted box.
 
 <img width="712" alt="image" src="https://github.com/Vidacelinda/DES-cryptography/assets/87499194/c77eff00-a2dc-4876-91e3-b3564f5b9e91">
