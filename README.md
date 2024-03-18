@@ -35,7 +35,7 @@ All the user has to do is run the code since I gave a inital string of 16 hexide
 <img width="419" alt="image" src="https://github.com/Vidacelinda/DES-cryptography/assets/87499194/98d3f287-3bea-4bde-b309-d57c7dd98b52">
 
 
-## Terminal output (testing of program )  -
+## Terminal output ( testing of program )  -
 
 <img width="700" alt="image" src="https://github.com/Vidacelinda/DES-cryptography/assets/87499194/89ee59f3-9aa3-4bb0-9966-119679ed8260">
 
