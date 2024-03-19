@@ -249,9 +249,8 @@ public:
 			for (int k = j; k < j + 6; k++)
 				s[0][j / 6] += R_xor_K[0][k];
 
-		// 8
+		// 8 sboxes
 		s_1[0] = "";
-		//
 		for (int j = 0; j < 8; j++)
 			s_1[0] += des_functions.get_element_from_box(s[0][j], j);
 		// right procesed calculation
@@ -356,70 +355,6 @@ public:
 		// cout << Bin_to_Hex(decrypted_bin) << endl
 	}
 };
-
-int main()
-{
-	DES_Encryption_And_Decryption DES;
-
-	bool is_valid;
-	string plain_txt, key;
-
-	do
-	{
-		is_valid = true;
-		// cin>>plain_txt
-
-		plain_txt = "1234567890123456";
-		cout << "Entered PLAIN TEXT of EXACTLY 16 character written in hexadecimal :\n" + plain_txt + "\n\n";
-
-		if (plain_txt.size() != 16)
-			is_valid = false;
-
-		else
-		{
-			for (int i = 0; i < plain_txt.size(); i++)
-				if (!((plain_txt[i] <= 'f' && plain_txt[i] >= 'a') ||
-					  (plain_txt[i] <= 'F' && plain_txt[i] >= 'A') ||
-					  (plain_txt[i] >= '0' && plain_txt[i] <= '9')))
-				{
-					is_valid = false;
-					break;
-				}
-		}
-		if (!is_valid)
-			cout << "invalid input, try again : ";
-	} while (!is_valid);
-
-	cout << "Entered KEY of EXACTLY 16 character written in hexadecimal : \n";
-
-	do
-	{
-		is_valid = true;
-
-		key = "1234567890123456";
-		cout << key + '\n';
-
-		if (key.size() != 16)
-			is_valid = false;
-
-		else
-		{
-			for (int i = 0; i < key.size(); i++)
-				if (!((key[i] <= 'f' && key[i] >= 'a') ||
-					  (key[i] <= 'F' && key[i] >= 'A') ||
-					  (key[i] >= '0' && key[i] <= '9')))
-				{
-					is_valid = false;
-					break;
-				}
-		}
-		if (!is_valid)
-			cout << "invalid input, try again : ";
-	} while (!is_valid);
-
-	DES.encrypt(plain_txt, key);
-	return 0;
-}
 string Bin_to_Hex(string s)
 {
 	string hex = "";
@@ -533,7 +468,6 @@ string Hex_to_Bin(string s)
 }
 
 string Dec_to_Bin(int n)
-
 {
 	string bin = "";
 	while (n > 0)
@@ -545,3 +479,66 @@ string Dec_to_Bin(int n)
 		bin = '0' + bin;
 	return bin;
 }
+
+int main()
+{
+	DES_Encryption_And_Decryption DES;
+
+	bool is_valid;
+	string plain_txt, key;
+
+	do
+	{
+		is_valid = true;
+		plain_txt = "1234567890123456";
+		cout << "Entered PLAIN TEXT of EXACTLY 16 character written in hexadecimal :\n" + plain_txt + "\n\n";
+
+		if (plain_txt.size() != 16)
+			is_valid = false;
+
+		else
+		{
+			for (int i = 0; i < plain_txt.size(); i++)
+				if (!((plain_txt[i] <= 'f' && plain_txt[i] >= 'a') ||
+					  (plain_txt[i] <= 'F' && plain_txt[i] >= 'A') ||
+					  (plain_txt[i] >= '0' && plain_txt[i] <= '9')))
+				{
+					is_valid = false;
+					break;
+				}
+		}
+		if (!is_valid)
+			cout << "invalid input, try again : ";
+	} while (!is_valid);
+
+	cout << "Entered KEY of EXACTLY 16 character written in hexadecimal : \n";
+
+	do
+	{
+		is_valid = true;
+
+		key = "1234567890123456";
+		cout << key + '\n';
+
+		if (key.size() != 16)
+			is_valid = false;
+
+		else
+		{
+			for (int i = 0; i < key.size(); i++)
+				if (!((key[i] <= 'f' && key[i] >= 'a') ||
+					  (key[i] <= 'F' && key[i] >= 'A') ||
+					  (key[i] >= '0' && key[i] <= '9')))
+				{
+					is_valid = false;
+					break;
+				}
+		}
+		if (!is_valid)
+			cout << "invalid input, try again : ";
+	} while (!is_valid);
+
+	DES.encrypt(plain_txt, key);
+	return 0;
+}
+
